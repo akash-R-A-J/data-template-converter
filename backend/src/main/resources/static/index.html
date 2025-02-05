@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Freemarker Template Transform</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <!-- Top Section with PNG Image -->
+      <!-- <div class="top-section">
+        <img src="l.png" alt="Transform Your Data" />
+      </div> -->
+
+      <!-- Main Heading -->
+      <h1>FormShift</h1>
+
+      <!-- Input Section -->
+      <div class="input-section">
+        <label for="sourceData">Enter Source Data:</label>
+        <textarea
+          id="sourceData"
+          rows="6"
+          placeholder="Paste your source data here..."
+        ></textarea>
+        <input type="file" name="src" id="src"></input>
+      </div>
+
+      <div class="input-section">
+        <label for="template">Enter Freemarker Template:</label>
+        <textarea
+          id="template"
+          rows="6"
+          placeholder="Paste your Freemarker template here..."
+        ></textarea>
+        <input type="file" name="templateFile" id="templateFile"></input>
+      </div>
+
+      <!-- Transform Button -->
+      <button onclick="sendDataToBackend()">Transform</button>
+
+      <!-- Output Section -->
+      <div class="output-section">
+        <h3>Transformed Output:</h3>
+        <div id="output"></div>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>

@@ -1,0 +1,267 @@
+/* Global styles */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  background-color: #a7b49e; /* Updated background color */
+  color: #4c4c4c; /* Text color that contrasts well with the background */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 20px;
+  background-size: cover;
+  background-attachment: fixed;
+}
+
+/* Container Styling */
+.container {
+  background-color: #e2e0c8; /* Inner box color */
+  padding: 40px;
+  border-radius: 20px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 600px;
+  position: relative;
+  z-index: 10;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Top Section with PNG Image */
+.top-section {
+  position: absolute;
+  top: -50px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: transparent;
+  padding: 0;
+  text-align: center;
+  width: auto;
+  z-index: 20;
+}
+
+.top-section img {
+  width: 250px; /* Set the image size */
+  height: auto;
+}
+
+/* Main Heading */
+h1 {
+  text-align: center;
+  font-size: 32px;
+  color: #3d5a3b; /* Deep green color that complements the background */
+  margin-bottom: 30px;
+  font-weight: 700;
+  text-transform: uppercase;
+  animation: fadeInUp 2s ease-out;
+  letter-spacing: 3px;
+}
+
+/* Animated Effects */
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Input fields and labels */
+.input-section {
+  margin-bottom: 25px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+label {
+  font-weight: 500;
+  color: #3d5a3b; /* Deep green for labels */
+  font-size: 18px;
+  margin-bottom: 8px;
+  display: inline-block;
+}
+
+input,
+textarea {
+  width: 100%;
+  padding: 18px;
+  font-size: 16px;
+  border: none;
+  border-radius: 12px;
+  margin-bottom: 15px;
+  transition: all 0.3s ease;
+  font-family: "Poppins", sans-serif;
+}
+
+/* Text areas with different colors */
+textarea {
+  background-color: #f1f0e6; /* Slightly darker light beige */
+  color: #4c4c4c; /* Dark gray text for good readability */
+}
+
+textarea:nth-child(2) {
+  background-color: #f7f6f2; /* Lighter beige */
+  color: #4c4c4c; /* Dark gray text */
+}
+
+textarea:nth-child(3) {
+  background-color: #f0f0e1; /* Light cream */
+  color: #4c4c4c; /* Dark gray text */
+}
+
+input,
+textarea:focus {
+  border: 2px solid #3d5a3b; /* Deep green border on focus */
+  background-color: #ffffff;
+  outline: none;
+  box-shadow: 0 0 10px rgba(76, 175, 80, 0.2);
+}
+
+/* Button styling */
+button {
+  display: block;
+  width: 100%;
+  padding: 18px;
+  background-color: #3d5a3b; /* Deep green for buttons */
+  color: white;
+  border: none;
+  border-radius: 12px;
+  font-size: 18px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  font-family: "Poppins", sans-serif;
+}
+
+button:hover {
+  background-color: #2f4f2f; /* Darker green on hover */
+  transform: translateY(-5px);
+}
+
+button:active {
+  background-color: #1e3d1e; /* Even darker green on active */
+  transform: translateY(2px);
+}
+
+/* Output Section */
+.output-section {
+  margin-top: 25px;
+  padding: 18px;
+  background-color: #f1f0e6; /* Slightly darker light beige */
+  border-radius: 12px;
+  font-size: 16px;
+  color: #4c4c4c; /* Dark gray text for better readability */
+  min-height: 120px;
+  border: 2px solid #3d5a3b;
+}
+
+#output {
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  color: #4c4c4c;
+}
+
+/* Media Queries for Responsive Design */
+@media screen and (max-width: 1024px) {
+  .container {
+    padding: 30px;
+    width: 90%;
+    max-width: 100%;
+  }
+
+  h1 {
+    font-size: 28px;
+  }
+
+  .input-section label {
+    font-size: 16px;
+  }
+
+  input,
+  textarea {
+    padding: 15px;
+  }
+
+  button {
+    padding: 15px;
+  }
+
+  .output-section {
+    padding: 15px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .top-section {
+    padding: 25px 0;
+  }
+
+  .top-section img {
+    width: 200px;
+  }
+
+  .container {
+    padding: 25px;
+  }
+
+  h1 {
+    font-size: 20px;
+  }
+
+  .input-section label {
+    font-size: 14px;
+  }
+
+  input,
+  textarea {
+    padding: 12px;
+    font-size: 14px;
+  }
+
+  button {
+    padding: 14px;
+    font-size: 16px;
+  }
+
+  .output-section {
+    padding: 12px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  body {
+    font-size: 14px;
+  }
+
+  h1 {
+    font-size: 18px;
+  }
+
+  .input-section label {
+    font-size: 12px;
+  }
+
+  input,
+  textarea {
+    padding: 10px;
+    font-size: 12px;
+  }
+
+  button {
+    padding: 12px;
+    font-size: 14px;
+  }
+
+  .output-section {
+    padding: 10px;
+  }
+}
