@@ -1,9 +1,9 @@
 const fs = require("fs");
 const axios = require("axios");
-const xml2js = require("xml2js");
-const csvtojson = require("csvtojson");
-const cheerio = require("cheerio");
-const { simpleParser } = require("mailparser");
+// const xml2js = require("xml2js");
+// const csvtojson = require("csvtojson");
+// const cheerio = require("cheerio");
+// const { simpleParser } = require("mailparser");
 const express = require("express");
 const bodyParser = require("body-parser");
 const path = require("path");
@@ -24,6 +24,9 @@ app.post("/text-data", async (req, res) => {
   const { sourceData, template } = req.body;
 
   console.log("received request!");
+  
+  // any type of input should be saved in sourceData.txt and template.ftl 
+  
   // Define the file paths for saving the data
   const sourceDataFilePath = path.join(__dirname, "sourceData.txt"); // ?
   const templateFilePath = path.join(__dirname, "template.ftl");
@@ -32,24 +35,25 @@ app.post("/text-data", async (req, res) => {
     // Write sourceData to sourceData.txt
     fs.writeFileSync(
       sourceDataFilePath,
-      JSON.stringify(sourceData, null, 2),
+      sourceData,
       "utf8"
     );
     console.log("Source Data saved to sourceData.txt");
 
     // Write template data to template.ftl
-    fs.writeFileSync(templateFilePath, template.toString(), "utf8");
+    fs.writeFileSync(templateFilePath, template, "utf8");
     console.log("Template saved to template.ftl");
 
     // Example usage
     const dataTransform_json = fs.readFileSync(sourceDataFilePath, "utf8");
+    console.log("typeof dataTransform_json: " + typeof dataTransform_json)
     const jsonData = await convertData(dataTransform_json); // convertData
 
     // Send JSON data to Java backend for Freemarker processing
-    sendFilesToSpringBoot(jsonData);
+    const response = await sendFilesToSpringBoot(jsonData);
 
     console.log("sending response to the frontend!");
-    return res.status(200).json({ message: "Files saved successfully!" });
+    return res.status(200).json({ message: "Files saved successfully!", response : response.data });
   } catch (error) {
     console.log("error-1");
     console.error("Error writing files:", error);
@@ -62,22 +66,16 @@ app.post("/text-data", async (req, res) => {
 async function sendFilesToSpringBoot(jsonData) {
   try {
     console.log("----------------------------------");
-    console.log("jsonData" + jsonData);
-    fs.writeFile("output.json", JSON.stringify(jsonData, null, 2), (err) => {
-      if (err) {
-        console.log("error-2");
-        console.error("Error writing to file", err);
-      } else {
-        console.log("JSON data successfully written to output.json");
-      }
-    });
-
+    console.log("jsonData: " + jsonData);
+    
     // Create a FormData object
     const formData = new FormData();
 
     // File paths (update these with actual file locations)
     const jsonFilePath = path.join(__dirname, "output.json");
     const templateFilePath = path.join(__dirname, "template.ftl");
+    
+    await fs.promises.writeFile(jsonFilePath, JSON.stringify(jsonData, null, 2));
 
     // Append files to formData
     formData.append("jsonFile", fs.createReadStream(jsonFilePath)); // Attach JSON file
@@ -94,6 +92,7 @@ async function sendFilesToSpringBoot(jsonData) {
     );
 
     console.log("Response from Spring Boot:", response.data);
+    return response;
   } catch (error) {
     console.error("Error sending request:", error.message);
   }

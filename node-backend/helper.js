@@ -199,6 +199,7 @@ async function convertHtmlToJson(htmlData) {
 async function convertData(data) {
   try {
     let jsonData;
+    console.log("typeof data : " + typeof data);
     const format = await detectFormat(data);
     console.log("type : " + format);
 
