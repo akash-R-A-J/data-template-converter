@@ -47,7 +47,7 @@ app.post("/text-data", async (req, res) => {
     // Example usage
     const dataTransform_json = fs.readFileSync(sourceDataFilePath, "utf8");
     console.log("typeof dataTransform_json: " + typeof dataTransform_json)
-    const jsonData = await convertData(dataTransform_json); // convertData
+    const jsonData = await convertData(dataTransform_json); // json object
 
     // Send JSON data to Java backend for Freemarker processing
     const response = await sendFilesToSpringBoot(jsonData);
