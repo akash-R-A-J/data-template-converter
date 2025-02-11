@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>File & Text Input</title>
+    <!-- <link rel="stylesheet" href="style.css"> -->
+    <link rel="stylesheet" href="dark.css">
+</head>
+<body>
+    <div class="container">
+        <h2>Convert Source & Template</h2>
+
+        <div class="input-group">
+            <label for="srcText">Source (Text):</label>
+            <input type="text" id="srcText" placeholder="Enter source text"><br>
+            <label for="srcFile">Source (File):</label>
+            <input type="file" id="srcFile">
+        </div>
+
+        <div class="input-group">
+            <label for="templateText">Template (Text):</label>
+            <input type="text" id="templateText" placeholder="Enter template text"><br>
+            <label for="templateFile">Template (File):</label>
+            <input type="file" id="templateFile">
+        </div>
+
+        <button id="submitBtn" onclick="sendDataToNodeBackend()">Submit</button>
+        <div id="response"></div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
